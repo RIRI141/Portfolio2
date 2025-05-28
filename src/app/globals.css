@@ -3,14 +3,396 @@
 :root {
   --background: #1B1136;
   --foreground: #171717;
+  
+
+  --neon-primary: #14b8a6;
+  --neon-secondary: #D5DC14;
+  --neon-accent: #ef4444;
+  --neon-purple: #ea4ae2;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-text-primary: #D5DC14
+  --color-text-primary: #D5DC14;
+  --color-neon-primary: var(--neon-primary);
+  --color-neon-secondary: var(--neon-secondary);
+  --color-neon-accent: var(--neon-accent);
+  --color-neon-purple: var(--neon-purple);
+}
+
+/* ネオンフリッカーアニメーション */
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    border-color: var(--neon-primary);
+    box-shadow:
+      0 0 .5rem #fff,
+      inset 0 0 .5rem #fff,
+      0 0 2rem var(--neon-primary),
+      inset 0 0 2rem var(--neon-primary),
+      0 0 4rem var(--neon-primary),
+      inset 0 0 4rem var(--neon-primary);
+  }
+  
+  20%, 24%, 55% {
+    border-color: rgba(20, 184, 166, 0.3);
+    box-shadow: none;
+  }
+}
+
+/* カラフルなネオンフリッカー */
+@keyframes neonFlickerColorful {
+  0%, 19%, 21%, 23%, 25% {
+    border-color: var(--neon-primary);
+    box-shadow:
+      0 0 .5rem #fff,
+      inset 0 0 .5rem #fff,
+      0 0 1rem var(--neon-primary),
+      inset 0 0 1rem var(--neon-primary),
+      0 0 1.5rem var(--neon-primary),
+      inset 0 0 1.5rem var(--neon-primary);
+  }
+  
+  26%, 44%, 46%, 48%, 50% {
+    border-color: var(--neon-secondary);
+    box-shadow:
+      0 0 .5rem #fff,
+      inset 0 0 .5rem #fff,
+      0 0 1rem var(--neon-secondary),
+      inset 0 0 1rem var(--neon-secondary),
+      0 0 1.5rem var(--neon-secondary),
+      inset 0 0 1.5rem var(--neon-secondary);
+  }
+  
+  51%, 69%, 71%, 73%, 75% {
+    border-color: var(--neon-accent);
+    box-shadow:
+      0 0 .5rem #fff,
+      inset 0 0 .5rem #fff,
+      0 0 1rem var(--neon-accent),
+      inset 0 0 1rem var(--neon-accent),
+      0 0 1.5rem var(--neon-accent),
+      inset 0 0 1.5rem var(--neon-accent);
+  }
+  
+  76%, 94%, 96%, 98%, 100% {
+    border-color: var(--neon-purple);
+    box-shadow:
+      0 0 .5rem #fff,
+      inset 0 0 .5rem #fff,
+      0 0 1rem var(--neon-purple),
+      inset 0 0 1rem var(--neon-purple),
+      0 0 1.5rem var(--neon-purple),
+      inset 0 0 1.5rem var(--neon-purple);
+  }
+  
+  20%, 24%, 45%, 47%, 49%, 70%, 72%, 74%, 95%, 97%, 99% {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+  }
+}
+
+/* 背景色のネオンフリッカーアニメーション */
+@keyframes neonFlickerBg {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    background-color: var(--neon-primary);
+    box-shadow:
+      0 0 1rem var(--neon-primary),
+      0 0 2rem var(--neon-primary),
+      0 0 4rem var(--neon-primary);
+  }
+  
+  20%, 24%, 55% {
+    background-color: rgba(20, 184, 166, 0.2);
+    box-shadow: none;
+  }
+}
+
+@keyframes neonFlickerBgColorful {
+  0%, 19%, 21%, 23%, 25% {
+    background-color: var(--neon-primary);
+    box-shadow:
+      0 0 1rem var(--neon-primary),
+      0 0 2rem var(--neon-primary);
+  }
+  
+  26%, 44%, 46%, 48%, 50% {
+    background-color: var(--neon-secondary);
+    box-shadow:
+      0 0 1rem var(--neon-secondary),
+      0 0 2rem var(--neon-secondary);
+  }
+  
+  51%, 69%, 71%, 73%, 75% {
+    background-color: var(--neon-accent);
+    box-shadow:
+      0 0 1rem var(--neon-accent),
+      0 0 2rem var(--neon-accent);
+  }
+  
+  76%, 94%, 96%, 98%, 100% {
+    background-color: var(--neon-purple);
+    box-shadow:
+      0 0 1rem var(--neon-purple),
+      0 0 2rem var(--neon-purple);
+  }
+  
+  20%, 24%, 45%, 47%, 49%, 70%, 72%, 74%, 95%, 97%, 99% {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+}
+
+/* 特定ボーダー用のアニメーション */
+@keyframes neonFlickerThin {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    border-color: var(--neon-primary);
+    box-shadow: 0 2px 1rem var(--neon-primary),
+   inset  0 2px 1rem var(--neon-primary);
+  }
+  
+  20%, 24%, 55% {
+    border-bottom-color: rgba(20, 184, 166, 0.3);
+    box-shadow: none;
+  }
+}
+
+@keyframes neonFlickerBorderBottomColorful {
+  0%, 19%, 21%, 23%, 25% {
+    border-bottom-color: var(--neon-primary);
+    box-shadow: 0 2px 1rem var(--neon-primary);
+  }
+  
+  26%, 44%, 46%, 48%, 50% {
+    border-bottom-color: var(--neon-secondary);
+    box-shadow: 0 2px 1rem var(--neon-secondary);
+  }
+  
+  51%, 69%, 71%, 73%, 75% {
+    border-bottom-color: var(--neon-accent);
+    box-shadow: 0 2px 1rem var(--neon-accent);
+  }
+  
+  76%, 94%, 96%, 98%, 100% {
+    border-bottom-color: var(--neon-purple);
+    box-shadow: 0 2px 1rem var(--neon-purple);
+  }
+  
+  20%, 24%, 45%, 47%, 49%, 70%, 72%, 74%, 95%, 97%, 99% {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+  }
+}
+@keyframes neonFlickerText {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: var(--neon-secondary);
+    text-shadow:
+      0 0 .5rem var(--neon-secondary),
+      0 0 1rem var(--neon-secondary),
+      0 0 2rem var(--neon-secondary);
+  }
+  
+  20%, 24%, 55% {
+    color: rgba(20, 184, 166, 0.4);
+    text-shadow: none;
+  }
+}
+
+@keyframes neonFlickerTextColorful {
+  0%, 19%, 21%, 23%, 25% {
+    color: var(--neon-primary);
+    text-shadow:
+      0 0 .5rem var(--neon-primary),
+      0 0 1rem var(--neon-primary);
+  }
+  
+  26%, 44%, 46%, 48%, 50% {
+    color: var(--neon-secondary);
+    text-shadow:
+      0 0 .5rem var(--neon-secondary),
+      0 0 1rem var(--neon-secondary);
+  }
+  
+  51%, 69%, 71%, 73%, 75% {
+    color: var(--neon-accent);
+    text-shadow:
+      0 0 .5rem var(--neon-accent),
+      0 0 1rem var(--neon-accent);
+  }
+  
+  76%, 94%, 96%, 98%, 100% {
+    color: var(--neon-purple);
+    text-shadow:
+      0 0 .5rem var(--neon-purple),
+      0 0 1rem var(--neon-purple);
+  }
+  
+  20%, 24%, 45%, 47%, 49%, 70%, 72%, 74%, 95%, 97%, 99% {
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow: none;
+  }
+}
+
+
+@utility neon-flicker {
+  animation: neonFlicker 2s infinite alternate;
+  border-width: 2px;
+  border-style: solid;
+}
+
+@utility neon-flicker-colorful {
+  animation: neonFlickerColorful 4s infinite;
+  border-width: 2px;
+  border-style: solid;
+}
+
+@utility neon-glow {
+  border: 2px solid var(--neon-primary);
+  box-shadow:
+    0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 2rem var(--neon-primary),
+    inset 0 0 2rem var(--neon-primary),
+    0 0 4rem var(--neon-primary),
+    inset 0 0 4rem var(--neon-primary);
+}
+
+/* specific boreder*/
+@utility neon-border-bottom {
+  border-bottom: 2px solid var(--neon-primary);
+  animation: neonFlickerBorderBottom 2s infinite alternate;
+}
+
+@utility neon-border-bottom-colorful {
+  border-bottom: 2px solid var(--neon-primary);
+  animation: neonFlickerBorderBottomColorful 4s infinite;
+}
+
+@utility neon-border-top {
+  border-top: 2px solid var(--neon-primary);
+  box-shadow: 0 -2px 1rem var(--neon-primary);
+  animation: neonFlicker 2s infinite alternate;
+}
+
+@utility neon-border-left {
+  border-left: 2px solid var(--neon-primary);
+  box-shadow: -2px 0 1rem var(--neon-primary);
+  animation: neonFlicker 2s infinite alternate;
+}
+
+@utility neon-border-right {
+  border-right: 2px solid var(--neon-primary);
+  box-shadow: 2px 0 1rem var(--neon-primary);
+  animation: neonFlicker 2s infinite alternate;
+}
+
+/* more detail  */
+@utility neon-border-thin {
+  border: 1px solid var(--neon-primary);
+  animation: neonFlickerThin 2s infinite alternate;
+}
+
+@utility neon-border-bottom-thick {
+  border-bottom: 4px solid var(--neon-primary);
+  animation: neonFlickerBorderBottom 2s infinite alternate;
+}
+
+@utility neon-bg-flicker {
+  animation: neonFlickerBg 2s infinite alternate;
+}
+
+@utility neon-bg-flicker-colorful {
+  animation: neonFlickerBgColorful 4s infinite;
+}
+
+@utility neon-text-flicker {
+  animation: neonFlickerText 2s infinite alternate;
+}
+
+@utility neon-text-flicker-colorful {
+  animation: neonFlickerTextColorful 4s infinite;
+}
+
+/**
+ * ----------------------------------------
+ * animation shake-bottom
+ * ----------------------------------------
+ */
+ @keyframes shake-bottom {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+  }
+  10% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  80% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+}
+/**
+ * ----------------------------------------
+ * animation shake-horizontal
+ * ----------------------------------------
+ */
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px);
+  }
+  80% {
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+  }
+  90% {
+    -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+  }
+}
+
+@utility shake-bottom {
+	        animation: shake-bottom 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+}
+
+@utility shake-horizontal {
+	        animation: shake-horizontal 2s infinite ;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +406,5 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x:hidden
 }
