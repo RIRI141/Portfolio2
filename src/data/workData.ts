@@ -7,8 +7,8 @@ export const workData: WorkData[] = [
       subtitle: "EC site for who lives in Vancouver",
       image: "/assets/img/work-banner/Monogatari.png",
       description: "Here in Vancouver, problems can arise when you buy many items locally but find too much to take home, or find something missing when you arrive there. Monogatari makes it easier for you to buy and sell with your memories.",
-      detailedDescription: "React、Next.js、TypeScriptを使用して構築され、滑らかなアニメーションとレスポンシブデザインを特徴としています。ユーザー体験を最優先に設計されたモダンなインターフェースが、没入感のある体験を提供します。",
-      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js", "MongoDB", "Vercel"],
+      detailedDescription: "This application is a simple e-commerce site where users can browse local items, view details, and purchase with ease. Built using modern frontend tools.",
+      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "", "Node.js", "MongoDB", "Vercel"],
       projectDetails: {
         period: "2024年3月 - 2024年6月",
         teamSize: "4members (Two Frontend, Two backend)",
