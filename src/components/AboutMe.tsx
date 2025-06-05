@@ -1,5 +1,7 @@
 'use client'
 
+import Contact from "@/components/Contact";
+import Work from "@/components/Work";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -70,9 +72,23 @@ const AboutMe = () => {
         </div>
       </div>
     </div>
-    <div className="w-full h-px neon-border-top ml-43"></div>
-    </>
     
+    {/* <div className="w-full px-4 sm:px-6">
+      <div className="h-px neon-border-top ml-auto max-w-[60%]"></div>
+    </div> */}
+    
+    
+    <div className="w-full flex justify-end">
+      <div className="h-px neon-border-top w-7/8"></div>
+    </div>
+   
+    
+    {/* 
+    <div className="w-full px-4 sm:px-6 flex justify-center">
+      <div className="h-px neon-border-top w-1/2 ml-auto"></div>
+    </div>
+    */}
+    </>
   );
 };
 

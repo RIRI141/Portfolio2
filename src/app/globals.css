@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;500&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #1B1136;
   --foreground: #171717;
-  
+  --code-bg: #282c34;
+  --code-text: #e4bb68;
+  --code-orange: #fa8231;
+  --code-white: white;
+  --code-purple: #c678dd;
+  --code-gray: #a9b0bd;
 
   --neon-primary: #14b8a6;
   --neon-secondary: #D5DC14;
@@ -15,12 +21,18 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono), 'JetBrains Mono', monospace;
   --color-text-primary: #D5DC14;
   --color-neon-primary: var(--neon-primary);
   --color-neon-secondary: var(--neon-secondary);
   --color-neon-accent: var(--neon-accent);
   --color-neon-purple: var(--neon-purple);
+  --color-code-bg: var(--code-bg);
+  --color-code-text: var(--code-text);
+  --color-code-orange: var(--code-orange);
+  --color-code-white: var(--code-white);
+  --color-code-purple: var(--code-purple);
+  --color-code-gray: var(--code-gray);
 }
 
 /* ネオンフリッカーアニメーション */
@@ -42,7 +54,6 @@
   }
 }
 
-/* カラフルなネオンフリッカー */
 @keyframes neonFlickerColorful {
   0%, 19%, 21%, 23%, 25% {
     border-color: var(--neon-primary);
@@ -185,6 +196,7 @@
     box-shadow: none;
   }
 }
+
 @keyframes neonFlickerText {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
     color: var(--neon-secondary);
@@ -196,6 +208,21 @@
   
   20%, 24%, 55% {
     color: rgba(20, 184, 166, 0.4);
+    text-shadow: none;
+  }
+}
+
+@keyframes neonFlickerTextWhite {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: white;
+    text-shadow:
+      0 0 .5rem white,
+      0 0 1rem white,
+      0 0 2rem white;
+  }
+  
+  20%, 24%, 55% {
+    color: rgba(220, 225, 224, 0.572);
     text-shadow: none;
   }
 }
@@ -235,92 +262,27 @@
   }
 }
 
-
-@utility neon-flicker {
-  animation: neonFlicker 2s infinite alternate;
-  border-width: 2px;
-  border-style: solid;
+/* コーディングアニメーション */
+@keyframes move {
+  25% {
+    transform: translatey(-5.8vmin);
+    opacity: 1;
+  }
+  50% {
+    transform: translatey(-11vmin);
+  }
+  75% {
+    transform: translatey(-16.5vmin);
+  }
 }
 
-@utility neon-flicker-colorful {
-  animation: neonFlickerColorful 4s infinite;
-  border-width: 2px;
-  border-style: solid;
-}
-
-@utility neon-glow {
-  border: 2px solid var(--neon-primary);
-  box-shadow:
-    0 0 .5rem #fff,
-    inset 0 0 .5rem #fff,
-    0 0 2rem var(--neon-primary),
-    inset 0 0 2rem var(--neon-primary),
-    0 0 4rem var(--neon-primary),
-    inset 0 0 4rem var(--neon-primary);
-}
-
-/* specific boreder*/
-@utility neon-border-bottom {
-  border-bottom: 2px solid var(--neon-primary);
-  animation: neonFlickerBorderBottom 2s infinite alternate;
-}
-
-@utility neon-border-bottom-colorful {
-  border-bottom: 2px solid var(--neon-primary);
-  animation: neonFlickerBorderBottomColorful 4s infinite;
-}
-
-@utility neon-border-top {
-  border-top: 2px solid var(--neon-primary);
-  box-shadow: 0 -2px 1rem var(--neon-primary);
-  animation: neonFlicker 2s infinite alternate;
-}
-
-@utility neon-border-left {
-  border-left: 2px solid var(--neon-primary);
-  box-shadow: -2px 0 1rem var(--neon-primary);
-  animation: neonFlicker 2s infinite alternate;
-}
-
-@utility neon-border-right {
-  border-right: 2px solid var(--neon-primary);
-  box-shadow: 2px 0 1rem var(--neon-primary);
-  animation: neonFlicker 2s infinite alternate;
-}
-
-/* more detail  */
-@utility neon-border-thin {
-  border: 1px solid var(--neon-primary);
-  animation: neonFlickerThin 2s infinite alternate;
-}
-
-@utility neon-border-bottom-thick {
-  border-bottom: 4px solid var(--neon-primary);
-  animation: neonFlickerBorderBottom 2s infinite alternate;
-}
-
-@utility neon-bg-flicker {
-  animation: neonFlickerBg 2s infinite alternate;
-}
-
-@utility neon-bg-flicker-colorful {
-  animation: neonFlickerBgColorful 4s infinite;
-}
-
-@utility neon-text-flicker {
-  animation: neonFlickerText 2s infinite alternate;
-}
-
-@utility neon-text-flicker-colorful {
-  animation: neonFlickerTextColorful 4s infinite;
-}
 
 /**
  * ----------------------------------------
  * animation shake-bottom
  * ----------------------------------------
  */
- @keyframes shake-bottom {
+@keyframes shake-bottom {
   0%,
   100% {
     -webkit-transform: rotate(0deg);
@@ -353,6 +315,7 @@
             transform: rotate(2deg);
   }
 }
+
 /**
  * ----------------------------------------
  * animation shake-horizontal
@@ -387,12 +350,124 @@
   }
 }
 
+/* Tailwind v4 Utility Classes */
+@utility neon-flicker {
+  animation: neonFlicker 2s infinite alternate;
+  border-width: 2px;
+  border-style: solid;
+}
+
+@utility neon-flicker-colorful {
+  animation: neonFlickerColorful 4s infinite;
+  border-width: 2px;
+  border-style: solid;
+}
+
+@utility neon-glow {
+  border: 2px solid var(--neon-primary);
+  box-shadow:
+    0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 2rem var(--neon-primary),
+    inset 0 0 2rem var(--neon-primary),
+    0 0 4rem var(--neon-primary),
+    inset 0 0 4rem var(--neon-primary);
+}
+
+@utility neon-border-bottom {
+  border-bottom: 2px solid var(--neon-primary);
+  animation: neonFlickerBorderBottom 2s infinite alternate;
+}
+
+@utility neon-border-bottom-colorful {
+  border-bottom: 2px solid var(--neon-primary);
+  animation: neonFlickerBorderBottomColorful 4s infinite;
+}
+
+@utility neon-border-top {
+  border-top: 2px solid var(--neon-primary);
+  box-shadow: 0 -2px 1rem var(--neon-primary);
+  animation: neonFlicker 2s infinite alternate;
+}
+
+@utility neon-border-left {
+  border-left: 2px solid var(--neon-primary);
+  box-shadow: -2px 0 1rem var(--neon-primary);
+  animation: neonFlicker 2s infinite alternate;
+}
+
+@utility neon-border-right {
+  border-right: 2px solid var(--neon-primary);
+  box-shadow: 2px 0 1rem var(--neon-primary);
+  animation: neonFlicker 2s infinite alternate;
+}
+
+@utility neon-border-thin {
+  border: 1px solid var(--neon-primary);
+  animation: neonFlickerThin 2s infinite alternate;
+}
+
+@utility neon-border-bottom-thick {
+  border-bottom: 4px solid var(--neon-primary);
+  animation: neonFlickerBorderBottom 2s infinite alternate;
+}
+
+@utility neon-bg-flicker {
+  animation: neonFlickerBg 2s infinite alternate;
+}
+
+@utility neon-bg-flicker-colorful {
+  animation: neonFlickerBgColorful 4s infinite;
+}
+
+@utility neon-text-flicker {
+  animation: neonFlickerText 2s infinite alternate;
+}
+
+@utility neon-text-flicker-white {
+  animation: neonFlickerTextWhite 2s infinite alternate;
+}
+
+@utility neon-text-flicker-colorful {
+  animation: neonFlickerTextColorful 4s infinite;
+}
+
 @utility shake-bottom {
-	        animation: shake-bottom 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+  animation: shake-bottom 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
 }
 
 @utility shake-horizontal {
-	        animation: shake-horizontal 2s infinite ;
+  animation: shake-horizontal 2s infinite;
+}
+
+/* Coding Animation Utilities */
+@utility coding-move {
+  animation: move 4s infinite;
+}
+
+@utility coding-white-out {
+  animation: white-out 5s infinite;
+}
+
+/* Coding Color Utilities */
+@utility text-code-orange {
+  color: var(--code-orange);
+}
+
+@utility text-code-purple {
+  color: var(--code-purple);
+}
+
+@utility text-code-gray {
+  color: var(--code-gray);
+}
+
+@utility bg-code {
+  background-color: var(--code-bg);
+}
+
+@utility text-code {
+  color: var(--code-text);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -406,5 +481,53 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x:hidden
+  overflow-x: hidden;
+}
+
+/* Specific styling for the coding animation elements */
+.string {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  animation: move 4s infinite;
+}
+
+.greeting {
+  position: relative;
+  top: 8.6vmin;
+  animation: white-out 5s infinite;
+}
+
+.closure::after {
+  content: '';
+  position: absolute;
+  height: 25vmin;
+  width: 40vmin;
+  background: var(--code-bg);
+  transform: translate(-45vmin, -24.5vmin);
+}
+
+.closure::before {
+  content: '';
+  position: absolute;
+  height: 25vmin;
+  width: 40vmin;
+  background: var(--code-bg);
+  transform: translate(-40vmin, 5vmin);
+}
+
+.en {
+  color: var(--code-orange);
+}
+
+.es {
+  color: var(--code-white);
+}
+
+.de {
+  color: var(--code-purple);
+}
+
+.it {
+  color: var(--code-gray);
 }
