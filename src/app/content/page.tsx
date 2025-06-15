@@ -3,6 +3,7 @@
 import AboutMe from "@/components/AboutMe";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
+import Skill from "@/components/Skill";
 
 
 
@@ -13,6 +14,7 @@ const Contents = () => {
     <>
     <AboutMe />
     <Work />
+    <Skill />
     <Contact />
     </>
   );

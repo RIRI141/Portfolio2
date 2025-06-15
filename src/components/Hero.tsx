@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
+import FuzzyText from "./FizzyText";
 import Link from "next/link";
 
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
@@ -49,7 +49,6 @@ const Hero = () => {
     <div className="min-h-screen bg-gradient-to-br flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="bg-gray-800 rounded-lg shadow-2xl border border-gray-700 overflow-hidden">
-          {/* Terminal Header */}
           <div className="bg-gray-700 px-4 py-2 flex items-center space-x-2">
             <div className="w-3 h-3 bg-red-500 rounded-full"></div>
             <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -65,7 +64,7 @@ const Hero = () => {
           </div>
 
           <div
-            className="ml-8 text-gray-400 font-mono"
+            className="ml-8 text-gray-400 font-mono h-16"
             style={{
               fontFamily: "JetBrains Mono, Consolas, Monaco, monospace",
             }}
@@ -84,7 +83,7 @@ const Hero = () => {
           </div>
 
           <div
-            className="border-t border-gray-700 bg-black p-4"
+            className="border-t border-gray-700 bg-black p-4  h-20"
             style={{
               fontFamily: "JetBrains Mono, Consolas, Monaco, monospace",
             }}
@@ -100,14 +99,23 @@ const Hero = () => {
           </div>
         </div>
         <div className="mt-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold  neon-text-flicker-white ">
+          <FuzzyText
+            baseIntensity={0.2}
+            hoverIntensity={0.5}
+            enableHover={true}
+          >
             I started from here...
-          </h1>
-          <Link href="/content">
-          <p className="text-white mt-4 text-lg">
-            Let's start to know about me, same as my past
-          </p>
-          </Link>
+          </FuzzyText>
+          <div className="inline-flex items-center group cursor-pointer">
+            <span className="text-white mr-3 mt-4 transform transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+            <Link href="/content">
+              <p className="text-white mt-4 text-lg transition-all duration-300 hover:underline hover:underline-offset-4 hover:text-green-400">
+                Let's start to know about me, same as my past
+              </p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

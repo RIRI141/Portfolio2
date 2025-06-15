@@ -96,8 +96,7 @@ const Contact = () => {
           setRecaptchaLoaded(true);
         }}
       />
-      
-      <div className="px-4 sm:px-6 pt-6"> 
+       
         <div className="px-4 sm:px-6 pt-6"> 
           <h2 className="neon-text-flicker text-lg font-medium mb-8">CONTACT</h2>
           
@@ -159,7 +158,7 @@ const Contact = () => {
 
               <button 
                 type="submit"
-                className={`text-white max-w-2/3 py-3 text-lg mt-5 mb-10 mx-auto p-4 rounded-md transition-all duration-200 ${
+                className={`text-white max-w-2/3 py-3 text-lg mt-5 mb-10 mx-auto p-4 cursor-pointer rounded-md transition-all duration-200 ${
                   isSubmitting 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-pink-500 hover:bg-pink-600 transform hover:scale-105'
@@ -177,7 +176,6 @@ const Contact = () => {
             </form>
           </div>
         </div>
-      </div>
     </>
   );
 };
