@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
 interface FuzzyTextProps {
   children: React.ReactNode;
@@ -10,20 +10,38 @@ interface FuzzyTextProps {
   enableHover?: boolean;
   baseIntensity?: number;
   hoverIntensity?: number;
+  breakpoint?: number; 
 }
 
 const FuzzyText: React.FC<FuzzyTextProps> = ({
   children,
-  fontSize = "4rem",
-  fontSizeMobile= "1rem",
+  fontSize = "6rem",
+  fontSizeMobile = "2.5rem",
   fontWeight = 900,
   fontFamily = "inherit",
   color = "#fff",
   enableHover = true,
   baseIntensity = 0.18,
   hoverIntensity = 0.5,
+  breakpoint = 768,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement & { cleanupFuzzyText?: () => void}>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const checkIsMobile = useCallback(() => {
+    setIsMobile(window.innerWidth < breakpoint);
+  }, [breakpoint]);
+
+  useEffect(() => {
+    checkIsMobile(); 
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
+  }, [checkIsMobile]);
+
+  const currentFontSize = isMobile ? fontSizeMobile : fontSize;
 
   useEffect(() => {
     let animationFrameId: number;
@@ -46,13 +64,13 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
           : fontFamily;
 
       const fontSizeStr =
-        typeof fontSize === "number" ? `${fontSize}px` : fontSize;
+        typeof currentFontSize === "number" ? `${currentFontSize}px` : currentFontSize;
       let numericFontSize: number;
-      if (typeof fontSize === "number") {
-        numericFontSize = fontSize;
+      if (typeof currentFontSize === "number") {
+        numericFontSize = currentFontSize;
       } else {
         const temp = document.createElement("span");
-        temp.style.fontSize = fontSize;
+        temp.style.fontSize = currentFontSize;
         document.body.appendChild(temp);
         const computedSize = window.getComputedStyle(temp).fontSize;
         numericFontSize = parseFloat(computedSize);
@@ -90,10 +108,15 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
       offCtx.fillStyle = color;
       offCtx.fillText(text, xOffset - actualLeft, actualAscent);
 
-      const horizontalMargin = 50;
+      const horizontalMargin = isMobile ? 20 : 50; 
       const verticalMargin = 0;
       canvas.width = offscreenWidth + horizontalMargin * 2;
       canvas.height = tightHeight + verticalMargin * 2;
+      
+      const dpr = window.devicePixelRatio || 1;
+      canvas.style.width = `${canvas.width / dpr}px`;
+      canvas.style.height = `${canvas.height / dpr}px`;
+      
       ctx.translate(horizontalMargin, verticalMargin);
 
       const interactiveLeft = horizontalMargin + xOffset;
@@ -102,7 +125,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
       const interactiveBottom = interactiveTop + tightHeight;
 
       let isHovering = false;
-      const fuzzRange = 30;
+      const fuzzRange = isMobile ? 20 : 30;
 
       const run = () => {
         if (isCancelled) return;
@@ -197,16 +220,17 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
     };
   }, [
     children,
-    fontSize,
+    currentFontSize, 
     fontWeight,
     fontFamily,
     color,
     enableHover,
     baseIntensity,
     hoverIntensity,
+    isMobile,
   ]);
 
-  return <canvas ref={canvasRef} />;
+  return <canvas ref={canvasRef} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '0 auto' }} />;
 };
 
 export default FuzzyText;

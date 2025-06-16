@@ -34,9 +34,9 @@ const Skill = () => {
 
   const centerX = 275;
   const centerY = 200;
-  const radius = isMobile ? 120 : 140; 
+  const radius = isMobile ? 120 : 145; 
   const circleRadius = isMobile ? 30 : 35;
-  const iconSize = isMobile ? 35 : 40; 
+  const iconSize = isMobile ? 40 : 45; 
   const fontSize = isMobile ? "11" : "12"; 
   const textOffset = isMobile ? 40 : 50;
   const calculateCircularPosition = (index: number, total: number) => {
@@ -134,12 +134,54 @@ const Skill = () => {
             }
           }
 
-          @keyframes rotate {
-            from {
-              transform: rotate(0deg);
+          @keyframes moveCircle1 {
+            0% {
+              transform: translate(0, 0);
             }
-            to {
-              transform: rotate(360deg);
+            25% {
+              transform: translate(calc(90vw - 200px), 50px);
+            }
+            50% {
+              transform: translate(calc(90vw - 150px));
+            }
+            75% {
+              transform: translate(50px, calc(100% - 50px));
+            }
+            100% {
+              transform: translate(0, 0);
+            }
+          }
+
+          @keyframes moveCircle2 {
+            0% {
+              transform: translate(calc(100% - 100px), 0);
+            }
+            25% {
+              transform: translate(calc(90vw - 20vw), calc(50% - 20px));
+            }
+            50% {
+              transform: translate(0, calc(50% + 20px));
+            }
+            75% {
+              transform: translate(100px, 50vh);
+            }
+            100% {
+              transform: translate(calc(100% - 80px), 0);
+            }
+          }
+
+          @keyframes moveCircle3 {
+            0% {
+              transform: translate(calc(90vw - 100px), 0);
+            }
+            33% {
+              transform: translate(20px, calc(33% + 24px));
+            }
+            66% {
+              transform: translate(calc(100% + 70px), calc(66% + 20px));
+            }
+            100% {
+              transform: translate(calc(50% - 24px), 0);
             }
           }
         `}</style>
@@ -149,47 +191,45 @@ const Skill = () => {
         </h2>
 
         <div
-          className="relative w-full mx-auto"
+          className="relative w-full mx-auto overflow-hidden"
           style={{
-            aspectRatio: "550/420",
-            maxWidth: isMobile ? "90%" : "70%", 
+            height: isMobile ? "300px" : "400px",
+            maxWidth: isMobile ? "90%" : "100%",
           }}
         >
+          <div
+            className="absolute w-16 h-16 border-2 rounded-full"
+            style={{
+              borderColor: "#D5DC14",
+              opacity: animationStarted ? 0.7 : 0,
+              transition: "opacity 1s ease 0.5s",
+              animation: "moveCircle1 15s linear infinite",
+            }}
+          />
+          <div
+            className="absolute w-20 h-20 border rounded-full"
+            style={{
+              borderColor: "#ea4ae2",
+              opacity: animationStarted ? 0.5 : 0,
+              transition: "opacity 1s ease 1s",
+              animation: "moveCircle2 12s linear infinite reverse",
+            }}
+          />
+          <div
+            className="absolute w-12 h-12 border  rounded-full"
+            style={{
+              borderColor: "#14b8a6",
+              opacity: animationStarted ? 0.6 : 0,
+              transition: "opacity 1s ease 1.5s",
+              animation: "moveCircle3 18s linear infinite",
+            }}
+          />
+
           <svg
-            viewBox="0 0 550 420"
+            viewBox="0 0 600 450"
             className="w-full h-full absolute inset-0"
             preserveAspectRatio="xMidYMid meet"
           >
-            <circle
-              cx={centerX}
-              cy={centerY}
-              r={isMobile ? 25 : 30}
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.1)"
-              strokeWidth={2}
-              strokeDasharray="5,5"
-              opacity={animationStarted ? 0.5 : 0}
-              style={{
-                animation: "rotate 20s linear infinite",
-                transition: "opacity 1s ease 0.5s",
-              }}
-            />
-
-            <circle
-              cx={centerX}
-              cy={centerY}
-              r={radius}
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.05)"
-              strokeWidth={1}
-              strokeDasharray={isMobile ? "8,8" : "10,10"}
-              opacity={animationStarted ? 0.3 : 0}
-              style={{
-                animation: "rotate 30s linear infinite reverse",
-                transition: "opacity 1s ease 1s",
-              }}
-            />
-
             {languages.map((language, index) =>
               renderLanguageIcon(language, index)
             )}
@@ -233,37 +273,6 @@ const Skill = () => {
             })}
           </svg>
         </div>
-
-        {/* {hoveredLanguage && (
-          <div
-            className={`mb- p-3 sm:p-4 bg-white rounded-lg shadow-lg border-l-4 border-yellow-300 max-w-max mx-auto ${
-              isMobile ? "text-xs" : "text-sm"
-            }`}
-          >
-            <p className="text-slate-600">
-              <span className="font-semibold text-slate-800">
-                {hoveredLanguage}
-              </span>{" "}
-              -
-              {hoveredLanguage === "JavaScript" &&
-                " Modern ES6+ development & DOM manipulation"}
-              {hoveredLanguage === "TypeScript" &&
-                " Type-safe application development & large-scale projects"}
-              {hoveredLanguage === "React" &&
-                " Interactive UI development & component architecture"}
-              {hoveredLanguage === "Next.js" &&
-                " Full-stack React framework & server-side rendering"}
-              {hoveredLanguage === "Node.js" &&
-                " Server-side development & REST API creation"}
-              {hoveredLanguage === "HTML" &&
-                " Semantic markup & web accessibility standards"}
-              {hoveredLanguage === "CSS" &&
-                " Responsive design & modern layout techniques"}
-              {hoveredLanguage === "Git" &&
-                " Version control & collaborative development workflows"}
-            </p>
-          </div>
-        )} */}
       </div>
 
       <div className="w-full flex justify-end">
