@@ -145,7 +145,7 @@ function setCorsHeaders(response: NextResponse) {
 }
 
 // OPTIONS method (CORS preflight)
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS() {
   const response = new NextResponse(null, { status: 200 });
   return setCorsHeaders(response);
 }

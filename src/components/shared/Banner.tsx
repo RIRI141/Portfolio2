@@ -13,7 +13,7 @@ interface BannerProps {
 }
 
 export function Banner({ onSlideChange }: BannerProps) {
-  const [screenType, setScreenType] = useState<ScreenType>("desktop");
+  const [, setScreenType] = useState<ScreenType>("desktop");
   const [currentSlide, setCurrentSlide] = useState<number>(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isLoading, setIsLoading] = useState(true); 

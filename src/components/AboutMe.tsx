@@ -29,11 +29,11 @@ const AboutMe = () => {
               />
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-10 pointer-events-none">
                 <h1 className="mb-2 font-bold text-4xl drop-shadow-lg">
-                  Hello, I'm Ryoga
+                  Hello, I&apos;m Ryoga
                 </h1>
                 <p className="text-sm drop-shadow-lg">
                   A bilingual web developer based in Vancouver CA. <br />
-                  I'm passionate about building beautiful and interactive web
+                  I&apos;m passionate about building beautiful and interactive web
                   applications using React(Next), TypeScript, and Tailwind CSS.{" "}
                   <br />
                   With experience in both English and Japanese environments, I
@@ -157,11 +157,11 @@ const AboutMe = () => {
 
           <div className="flex flex-col justify-center items-center text-center text-white">
             <h1 className="mb-4 font-bold text-2xl sm:text-3xl drop-shadow-lg">
-              Hello, I'm Ryoga
+              Hello, I&apos;m Ryoga
             </h1>
             <p className="text-sm sm:text-base drop-shadow-lg leading-relaxed">
               A bilingual web developer based in Vancouver CA. <br />
-              I'm passionate about building beautiful and interactive web
+              I&apos;m passionate about building beautiful and interactive web
               applications using React(Next), TypeScript, and Tailwind CSS.{" "}
               <br />
               With experience in both English and Japanese environments, I love

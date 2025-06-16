@@ -3,6 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
+type Language = {
+  name: string;
+  color: string;
+}
+
 const Skill = () => {
   const [hoveredLanguage, setHoveredLanguage] = useState<string | null>(null);
   const [animationStarted, setAnimationStarted] = useState(false);
@@ -46,7 +51,7 @@ const Skill = () => {
     return { x, y };
   };
 
-  const renderLanguageIcon = (language: any, index: number) => {
+  const renderLanguageIcon = (language: Language, index: number) => {
     const isHovered = hoveredLanguage === language.name;
     const scale = isHovered ? 1.2 : 1;
     const opacity = animationStarted ? 1 : 0;

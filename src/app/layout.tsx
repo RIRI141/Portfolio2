@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Bruno_Ace } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const bruno = Bruno_Ace({
   weight: "400",

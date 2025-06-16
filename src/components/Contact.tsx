@@ -1,6 +1,6 @@
 
 'use client'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Script from 'next/script';
 
 declare global {

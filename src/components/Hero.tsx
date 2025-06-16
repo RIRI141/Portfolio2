@@ -43,7 +43,7 @@ const Hero = () => {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, loopNum, typingSpeed, textArray]);
+  }, [displayedText, isDeleting, loopNum, typingSpeed]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br flex items-center justify-center p-4">
@@ -73,12 +73,12 @@ const Hero = () => {
             <span className="text-gray-300">.</span>
             <span className="text-yellow-400">log</span>
             <span className="text-gray-300">(</span>
-            <span className="text-green-400">"</span>
+            <span className="text-green-400">&quot;</span>
             <span className="text-green-400 relative">
               {displayedText}
               <span className="animate-pulse text-white">|</span>
             </span>
-            <span className="text-green-400">"</span>
+            <span className="text-green-400">&quot;</span>
             <span className="text-gray-300">);</span>
           </div>
 
@@ -112,7 +112,7 @@ const Hero = () => {
             </span>
             <Link href="/content">
               <p className="text-white mt-4 text-lg transition-all duration-300 hover:underline hover:underline-offset-4 hover:text-green-400">
-                Let's start to know about me, same as my past
+                Let&quot;s start to know about me, same as my past
               </p>
             </Link>
           </div>
